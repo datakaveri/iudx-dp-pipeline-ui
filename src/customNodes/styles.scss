@@ -1,0 +1,52 @@
+.inputNode {
+  outline: 1px solid black;
+  width: 150px;
+  height: 50px;
+  padding: 5px;
+  border-radius: 40px;
+  background-color: #6ede86c5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: 0.25);
+
+  label {
+    font-size: 15px;
+  }
+}
+
+.outputNode {
+  outline: 1px solid black;
+  width: 150px;
+  height: 50px;
+  padding: 5px;
+  border-radius: 40px;
+  background-color: #6865a5c5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: 0.25);
+
+  .formContents {
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+  }
+}
+
+.defaultNode {
+  outline: 1px solid black;
+  width: 150px;
+  height: 50px;
+  padding: 5px;
+  background-color: #ff0072c5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px rgba($color: #000000, $alpha: 0.25);
+}
