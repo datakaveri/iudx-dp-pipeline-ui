@@ -1,6 +1,3 @@
-import { Button, Grid, IconButton } from "@mui/material";
-import { Field } from "react-final-form";
-import CloseIcon from "@mui/icons-material/Close";
 import { Suppression } from "./cases/Suppression";
 import { Pseudonymization } from "./cases/Pseudonymization";
 import { Generalization } from "./cases/Generalization";

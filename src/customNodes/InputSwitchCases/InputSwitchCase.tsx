@@ -11,24 +11,16 @@ export const InputSwitchCase = ({ nodeType, data }: Props) => {
 			return <label>{data.suppression.length} items selected</label>;
 		case "Pseudonymization":
 			return <label>{data.pseudonymization}</label>;
-		case "Generalization":
-			return (
-				<>
-					<label>{data["spatio-generalization"]}</label>
-				</>
-			);
+
+		case "Generalization": {
+			return <label>{data.spatioGeneralization.locationCol} 1</label>;
+		}
 		case "Aggregation":
-			return (
-				<>
-					<label>{data["spatio-generalization"]}</label>
-				</>
-			);
+			return <label>{data.aggregationPerUser.trueValue}</label>;
 
 		case "Query Building":
 			return (
-				<>
-					<label>{data["spatio-generalization"]}</label>
-				</>
+				<label>{data.aggregationAcrossUsers.trueValueThreshold}</label>
 			);
 
 		case "DP - Noise Addition":

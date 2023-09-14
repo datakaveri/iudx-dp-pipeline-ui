@@ -17,7 +17,9 @@ export const DPNoiseAddition = ({
 	return (
 		<form onSubmit={handleSubmit}>
 			<Grid container spacing={2}>
-				<Grid item xs={9} />
+				<Grid item xs={9}>
+					<label>differentialPrivacy</label>
+				</Grid>
 				<Grid item xs={3}>
 					<IconButton onClick={onClose}>
 						<CloseIcon />
@@ -27,7 +29,7 @@ export const DPNoiseAddition = ({
 					<label>globalMaxValue</label>
 					<Field
 						className="finalFormInput"
-						name="globalMaxValue"
+						name="differentialPrivacy.globalMaxValue"
 						component="input"
 						type="number"
 					/>
@@ -37,7 +39,7 @@ export const DPNoiseAddition = ({
 					<label>globalMinValue</label>
 					<Field
 						className="finalFormInput"
-						name="globalMinValue"
+						name="differentialPrivacy.globalMinValue"
 						component="input"
 						type="number"
 					/>
@@ -49,7 +51,7 @@ export const DPNoiseAddition = ({
 					<label>query1</label>
 					<Field
 						className="finalFormInput"
-						name="query1"
+						name="differentialPrivacy.epsilon.query1"
 						component="input"
 						type="number"
 					/>
@@ -59,7 +61,7 @@ export const DPNoiseAddition = ({
 					<label>query2</label>
 					<Field
 						className="finalFormInput"
-						name="query2"
+						name="differentialPrivacy.epsilon.query2"
 						component="input"
 						type="number"
 					/>

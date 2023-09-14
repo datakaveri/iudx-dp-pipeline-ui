@@ -18,49 +18,51 @@ const Aggregation = ({
 	return (
 		<form onSubmit={handleSubmit}>
 			<Grid container spacing={2}>
-				<Grid item xs={9} />
+				<Grid item xs={9}>
+					<label>aggregationPerUser</label>
+				</Grid>
 				<Grid item xs={3}>
 					<IconButton onClick={onClose}>
 						<CloseIcon />
 					</IconButton>
 				</Grid>
 				<Grid item xs={5}>
-					<label>globalMaxValue</label>
+					<label>trueValue</label>
 					<Field
 						className="finalFormInput"
-						name="globalMaxValue"
+						name="aggregationPerUser.trueValue"
 						component="input"
 						type="number"
 					/>
 				</Grid>
 				<Grid item xs={1} />
 				<Grid item xs={5}>
-					<label>globalMinValue</label>
+					<label>groupByCol</label>
 					<Field
 						className="finalFormInput"
-						name="globalMinValue"
+						name="aggregationPerUser.groupByCol"
 						component="input"
 						type="number"
 					/>
 				</Grid>
 				<Grid item xs={10}>
-					<label>epsilon</label>
+					<label>aggregationAcrossUsers</label>
 				</Grid>
 				<Grid item xs={5}>
-					<label>query1</label>
+					<label>minEventOccurences</label>
 					<Field
 						className="finalFormInput"
-						name="query1"
+						name="aggregationAcrossUsers.minEventOccurences"
 						component="input"
 						type="number"
 					/>
 				</Grid>
 				<Grid item xs={1} />
 				<Grid item xs={5}>
-					<label>query2</label>
+					<label>trueValueThreshold</label>
 					<Field
 						className="finalFormInput"
-						name="query2"
+						name="aggregationAcrossUsers.trueValueThreshold"
 						component="input"
 						type="number"
 					/>

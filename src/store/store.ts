@@ -14,16 +14,15 @@ import {
 import { create } from "zustand";
 import { initialNodes } from "../constants/initialNodes";
 import { initialEdges } from "../constants/initialEdges";
-import { FormValues } from "../components/FormComponent";
 
 export type DPOutput = {
 	suppression: string[];
 	pseudonymization: string;
-	"spatio-generalization": {
+	spatioGeneralization: {
 		locationCol: string;
 		h3Resolution: number;
 	};
-	"temporal-generalization": {
+	temporalGeneralization: {
 		dateTimeCol: string;
 		startTime: number;
 		endTime: number;
@@ -48,7 +47,6 @@ export type DPOutput = {
 
 export type NodeData = {
 	label: string;
-	formData: FormValues;
 	dpOutput: DPOutput;
 };
 
@@ -121,6 +119,38 @@ export const useStore = create<RFState>((set, get) => ({
 							dpOutput: {
 								...node.data.dpOutput,
 								pseudonymization: dpData.pseudonymization,
+							},
+						};
+						break;
+					case "Generalization":
+						node.data = {
+							...node.data,
+							dpOutput: {
+								...node.data.dpOutput,
+								spatioGeneralization:
+									dpData.spatioGeneralization,
+								temporalGeneralization:
+									dpData.temporalGeneralization,
+							},
+						};
+						break;
+					case "Aggregation":
+						node.data = {
+							...node.data,
+							dpOutput: {
+								...node.data.dpOutput,
+								aggregationAcrossUsers:
+									dpData.aggregationAcrossUsers,
+								aggregationPerUser: dpData.aggregationPerUser,
+							},
+						};
+						break;
+					case "DP - Noise Addition":
+						node.data = {
+							...node.data,
+							dpOutput: {
+								...node.data.dpOutput,
+								differentialPrivacy: dpData.differentialPrivacy,
 							},
 						};
 						break;
