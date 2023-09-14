@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import Template4 from "../pages/Template4";
+import DPPipeline from "../pages/DPPipeline";
 
 const Router = () => {
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Template4 />} />
-      </Routes>
-    </div>
-  );
+	return (
+		<div>
+			<Routes>
+				<Route path="/" element={<DPPipeline />} />
+			</Routes>
+		</div>
+	);
 };
 
 export default Router;
