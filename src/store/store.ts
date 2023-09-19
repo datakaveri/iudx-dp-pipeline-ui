@@ -1,12 +1,8 @@
 import {
 	Connection,
-	Edge,
 	EdgeChange,
 	Node,
 	NodeChange,
-	OnConnect,
-	OnEdgesChange,
-	OnNodesChange,
 	addEdge,
 	applyEdgeChanges,
 	applyNodeChanges,
@@ -14,53 +10,8 @@ import {
 import { create } from "zustand";
 import { initialNodes } from "../constants/initialNodes";
 import { initialEdges } from "../constants/initialEdges";
-
-export type DPOutput = {
-	suppression: string[];
-	pseudonymization: string;
-	spatioGeneralization: {
-		locationCol: string;
-		h3Resolution: number;
-	};
-	temporalGeneralization: {
-		dateTimeCol: string;
-		startTime: number;
-		endTime: number;
-	};
-	aggregationPerUser: {
-		trueValue: string;
-		groupByCol: string;
-	};
-	aggregationAcrossUsers: {
-		minEventOccurences: number;
-		trueValueThreshold: number;
-	};
-	differentialPrivacy: {
-		globalMaxValue: number;
-		globalMinValue: number;
-		epsilon: {
-			query1: number;
-			query2: number;
-		};
-	};
-};
-
-export type NodeData = {
-	label: string;
-	dpOutput: DPOutput;
-};
-
-export type RFState = {
-	nodes: Node<NodeData>[];
-	edges: Edge[];
-	onNodesChange: OnNodesChange;
-	onEdgesChange: OnEdgesChange;
-	onConnect: OnConnect;
-	concatenateNode: (node: Node) => void;
-	// updateNodeForm: (nodeId: string, formData: FormValues) => void;
-	updateDPForm: (nodeId: string, formData: DPOutput) => void;
-	getNodeType: (nodeId: string) => string;
-};
+import { DPOutput } from "../types/DPOutput";
+import { RFState } from "../types/RFState";
 
 export const useStore = create<RFState>((set, get) => ({
 	nodes: initialNodes,
@@ -86,20 +37,6 @@ export const useStore = create<RFState>((set, get) => ({
 			nodes: updatedNodes,
 		});
 	},
-	// updateNodeForm: (nodeId: string, formData: FormValues) => {
-	//   const children = get().edges.map((node) =>
-	//     node.source === nodeId ? node.target : null
-	//   );
-	//   const updatedNodes = get().nodes.map((node) => {
-	//     if (children.includes(node.id)) {
-	//       node.data = { ...node.data, formData };
-	//     }
-	//     return node;
-	//   });
-	//   set({
-	//     nodes: updatedNodes,
-	//   });
-	// },
 	updateDPForm: (nodeId: string, dpData: DPOutput) => {
 		const updatedNodes = get().nodes.map((node) => {
 			if (node.id === nodeId) {
@@ -163,8 +100,58 @@ export const useStore = create<RFState>((set, get) => ({
 		});
 	},
 	getNodeType: (nodeId: string) => {
-		const x = get().nodes.filter((node) => nodeId === node.id)[0].data
-			.label;
-		return x;
+		const nodeType = get().nodes.filter((node) => nodeId === node.id)[0]
+			.data.label;
+		return nodeType;
+	},
+	getFinalOutput: () => {
+		let finalOutput = {} as DPOutput;
+		get().edges.map((edge) => {
+			get().nodes.map((node) => {
+				if (node.id === edge.source) {
+					switch (node.data.label) {
+						case "Suppression":
+							finalOutput = {
+								...finalOutput,
+								suppression: node.data.dpOutput.suppression,
+							};
+							break;
+						case "Pseudonymization":
+							finalOutput = {
+								...finalOutput,
+								pseudonymization:
+									node.data.dpOutput.pseudonymization,
+							};
+							break;
+						case "Generalization":
+							finalOutput = {
+								...finalOutput,
+								spatioGeneralization:
+									node.data.dpOutput.spatioGeneralization,
+								temporalGeneralization:
+									node.data.dpOutput.temporalGeneralization,
+							};
+							break;
+						case "Aggregation":
+							finalOutput = {
+								...finalOutput,
+								aggregationAcrossUsers:
+									node.data.dpOutput.aggregationAcrossUsers,
+								aggregationPerUser:
+									node.data.dpOutput.aggregationPerUser,
+							};
+							break;
+						case "DP - Noise Addition":
+							finalOutput = {
+								...finalOutput,
+								differentialPrivacy:
+									node.data.dpOutput.differentialPrivacy,
+							};
+							break;
+					}
+				}
+			});
+		});
+		return finalOutput;
 	},
 }));

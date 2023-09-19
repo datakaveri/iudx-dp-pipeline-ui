@@ -1,4 +1,4 @@
-import { DPOutput } from "../../store/store";
+import { DPOutput } from "../../types/DPOutput";
 
 interface Props {
 	nodeType: string;
@@ -13,20 +13,34 @@ export const InputSwitchCase = ({ nodeType, data }: Props) => {
 			return <label>{data.pseudonymization}</label>;
 
 		case "Generalization": {
-			return <label>{data.spatioGeneralization.locationCol} 1</label>;
+			return (
+				<label>
+					{data.spatioGeneralization !== null
+						? `Updated spatioGeneralization & temporalGeneralization`
+						: null}
+				</label>
+			);
 		}
 		case "Aggregation":
-			return <label>{data.aggregationPerUser.trueValue}</label>;
+			return (
+				<label>
+					{data.aggregationPerUser !== null
+						? `Updated aggregationPerUser and aggregationAcrossUsers`
+						: null}
+				</label>
+			);
 
 		case "Query Building":
-			return (
-				<label>{data.aggregationAcrossUsers.trueValueThreshold}</label>
-			);
+			return <label></label>;
 
 		case "DP - Noise Addition":
 			return (
 				<>
-					<label>{data.differentialPrivacy.globalMaxValue}</label>
+					<label>
+						{data.differentialPrivacy !== null
+							? `Updated differentialPrivacy`
+							: null}
+					</label>
 				</>
 			);
 	}

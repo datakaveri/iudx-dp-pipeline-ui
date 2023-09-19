@@ -34,18 +34,16 @@ const InputNode = ({ isConnectable, data }: NodeProps<NodeData>) => {
 					}}
 				/>
 			) : null}
-			{data.label !== "DP - Noise Addition" ? (
-				<Handle
-					id="b"
-					type="source"
-					position={Position.Right}
-					isConnectable={isConnectable}
-					style={{
-						background: "white",
-						outline: "1px solid black",
-					}}
-				/>
-			) : null}
+			<Handle
+				id="b"
+				type="source"
+				position={Position.Right}
+				isConnectable={isConnectable}
+				style={{
+					background: "white",
+					outline: "1px solid black",
+				}}
+			/>
 		</div>
 	);
 };

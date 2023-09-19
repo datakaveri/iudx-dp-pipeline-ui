@@ -9,7 +9,7 @@ import {
 	Node,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { RFState, useStore } from "../../store/store";
+import { useStore } from "../../store/store";
 import { shallow } from "zustand/shallow";
 import { useCallback, useRef, useState } from "react";
 import ContextMenu from "../../components/ContextMenu";
@@ -18,11 +18,14 @@ import InputNode from "../../customNodes/InputNode";
 import OutputNode from "../../customNodes/OutputNode";
 import { nodeColor } from "../../constants/nodeColors";
 import DefaultNode from "../../customNodes/DefaultNode";
+import JSONNode from "../../customNodes/JSONNode";
+import { RFState } from "../../types/RFState";
 
 const nodeTypes = {
 	inputNode: InputNode,
 	outputNode: OutputNode,
 	defaultNode: DefaultNode,
+	jsonNode: JSONNode,
 };
 
 const selector = (state: RFState) => ({

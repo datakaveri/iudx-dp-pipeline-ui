@@ -1,7 +1,9 @@
 import { Form } from "react-final-form";
 
-import { DPOutput, RFState, useStore } from "../store/store";
+import { RFState } from "../types/RFState";
+import { useStore } from "../store/store";
 import { SwitchCase } from "./FormSwitchCases/FormSwitchCase";
+import { DPOutput } from "../types/DPOutput";
 
 interface Props {
 	id: string;
@@ -13,7 +15,6 @@ const DPForm = ({ id, onClose }: Props) => {
 	const updateDPForm = useStore((state: RFState) => state.updateDPForm);
 
 	const onSubmit = (values: DPOutput) => {
-		console.log(values);
 		updateDPForm(id, values);
 	};
 
