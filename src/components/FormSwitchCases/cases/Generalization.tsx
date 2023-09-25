@@ -1,6 +1,7 @@
 import { Button, Grid, IconButton } from "@mui/material";
 import { Field } from "react-final-form";
 import CloseIcon from "@mui/icons-material/Close";
+import { dropdownOptions } from "../../../constants/dropdownOptions";
 interface Props {
 	handleSubmit: any;
 	submitting: boolean;
@@ -29,9 +30,15 @@ export const Generalization = ({
 					<label>locationCol</label>
 					<Field
 						name="spatioGeneralization.locationCol"
-						component="input"
-						type="text"
-					/>{" "}
+						component="select"
+					>
+						<option />
+						{dropdownOptions.map((el, index) => (
+							<option value={el} key={index}>
+								{el}
+							</option>
+						))}
+					</Field>
 				</Grid>
 				<Grid item xs={10}>
 					<label>h3Resolution</label>
@@ -48,9 +55,15 @@ export const Generalization = ({
 					<label>dateTimeCol</label>
 					<Field
 						name="temporalGeneralization.dateTimeCol"
-						component="input"
-						type="text"
-					/>
+						component="select"
+					>
+						<option />
+						{dropdownOptions.map((el, index) => (
+							<option value={el} key={index}>
+								{el}
+							</option>
+						))}
+					</Field>
 				</Grid>
 
 				<Grid item xs={5}>

@@ -53,8 +53,8 @@
 
 .jsonNode {
 	outline: 1px solid black;
-	width: 150px;
-	height: 200px;
+	width: 250px;
+	height: 300px;
 	padding: 5px;
 	background-color: #ffffffc5;
 	display: flex;
@@ -69,5 +69,12 @@
 		outline: 1px solid black;
 		font-family: monospace;
 		font-size: 10px;
+		overflow-y: scroll;
+	}
+	.buttonRow {
+		display: flex;
+		flex-direction: row;
+		align-items: start;
+		justify-content: start;
 	}
 }

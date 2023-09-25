@@ -27,3 +27,9 @@ export type DPOutput = {
 		};
 	};
 };
+
+export type DPOutput_LEGACY = {
+	duplicateDetection: string[];
+	suppressCols: string[];
+	outputOptions: number;
+};

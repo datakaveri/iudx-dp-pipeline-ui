@@ -113,7 +113,10 @@ export const useStore = create<RFState>((set, get) => ({
 						case "Suppression":
 							finalOutput = {
 								...finalOutput,
-								suppression: node.data.dpOutput.suppression,
+								suppression:
+									node.data.dpOutput.suppression !== undefined
+										? node.data.dpOutput.suppression
+										: [],
 							};
 							break;
 						case "Pseudonymization":

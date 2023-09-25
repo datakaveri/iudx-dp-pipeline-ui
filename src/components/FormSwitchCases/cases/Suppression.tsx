@@ -2,18 +2,9 @@ import { Button, Grid, IconButton } from "@mui/material";
 import { Field } from "react-final-form";
 import CloseIcon from "@mui/icons-material/Close";
 import { Fragment } from "react";
-
-const suppressionOptions: string[] = [
-	"trip_direction",
-	"last_stop_arrival_time",
-	"route_id",
-	"actual_trip_start_time",
-	"trip_delay",
-	"vehicle_label",
-	"id",
-	"location.type",
-	"trip_id",
-];
+import { dropdownOptions } from "../../../constants/dropdownOptions";
+import { RFState } from "../../../types/RFState";
+import { useStore } from "../../../store/store";
 
 interface Props {
 	handleSubmit: any;
@@ -28,13 +19,15 @@ export const Suppression = ({
 	pristine,
 	onClose,
 }: Props) => {
+	const getFinalOutput = useStore((state: RFState) => state.getFinalOutput);
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<Grid container spacing={2}>
 				<Grid item xs={10}>
 					<label>Suppression</label>
 					<br />
-					{suppressionOptions.map((el, index) => (
+					{dropdownOptions.map((el, index) => (
 						<Fragment key={index}>
 							<label>
 								<Field
